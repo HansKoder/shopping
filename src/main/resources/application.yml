@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    username: hansfullstack
+    password: hansfullstack
+    url: jdbc:postgresql://localhost:5432/postgres
+
+
+  flyway:
+    enabled: false
