@@ -3,14 +3,14 @@ package com.shopping.hansfullstack.shopping.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @ToString
-@Entity
-@Table(name = "clothes")
-public class Clothes {
+@Table(name = "suppliers")
+public class Supplier {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public class Clothes {
 
     private String name;
 
-    private String category;
+    private String phone;
 
-    private String brand;
+    private String nit;
 
-    @Column(name = "detail_size")
-    private String detailSize;
+    @Column(nullable = false)
+    private String email;
 
 }

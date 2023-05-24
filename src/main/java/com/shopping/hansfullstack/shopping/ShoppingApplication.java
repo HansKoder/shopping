@@ -18,6 +18,8 @@ public class ShoppingApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		populateData.populateClothes();
+		System.out.println("running...");
+		// populateData.populateClothes();
+		// populateData.populateSuppliers();
 	}
 }

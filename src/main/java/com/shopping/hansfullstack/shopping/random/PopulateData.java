@@ -4,4 +4,6 @@ public interface PopulateData {
 
     void populateClothes ();
 
+    void populateSuppliers ();
+
 }

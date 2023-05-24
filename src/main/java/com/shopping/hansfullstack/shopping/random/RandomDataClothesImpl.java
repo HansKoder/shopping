@@ -1,6 +1,7 @@
 package com.shopping.hansfullstack.shopping.random;
 
 import com.shopping.hansfullstack.shopping.entities.Clothes;
+import com.shopping.hansfullstack.shopping.entities.Supplier;
 import org.springframework.stereotype.Component;
 
 import java.nio.charset.Charset;
@@ -30,8 +31,18 @@ public class RandomDataClothesImpl implements RandomDataClothes {
         return Clothes.builder()
                 .brand(brand)
                 .category(category)
-                .detail_size(size)
+                .detailSize(size)
                 .name(name)
+                .build();
+    }
+
+    @Override
+    public Supplier getRandomSupplier() {
+        return Supplier.builder()
+                .name(generateWord())
+                .nit(generateWord())
+                .email(generateEmail())
+                .phone(generatePhoneNumber())
                 .build();
     }
 
@@ -56,4 +67,38 @@ public class RandomDataClothesImpl implements RandomDataClothes {
 
         return  generatedString;
     }
+
+    private String generateWord (int limit) {
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = limit;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return  generatedString;
+    }
+
+    private String generateEmail () {
+        return generateWord(8) + "@" + generateWord(3) + ".com";
+    }
+
+    private String generatePhoneNumber () {
+        int leftLimit = 48; // letter 'a'
+        int rightLimit = 57; // letter 'z'
+        int targetStringLength = 7;
+        Random random = new Random();
+
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
+
+        return  "35+" + generatedString;
+    }
+
+
 }
