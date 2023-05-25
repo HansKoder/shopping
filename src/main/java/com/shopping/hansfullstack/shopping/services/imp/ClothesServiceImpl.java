@@ -1,4 +1,4 @@
-package com.shopping.hansfullstack.shopping.services;
+package com.shopping.hansfullstack.shopping.services.imp;
 
 import com.shopping.hansfullstack.shopping.entities.Clothes;
 import com.shopping.hansfullstack.shopping.exceptions.NoSuchClothesException;
@@ -6,15 +6,15 @@ import com.shopping.hansfullstack.shopping.mappers.ClothesMapper;
 import com.shopping.hansfullstack.shopping.repositories.ClothesRepository;
 import com.shopping.hansfullstack.shopping.request.ClothesDTO;
 import com.shopping.hansfullstack.shopping.response.ResponseDTO;
+import com.shopping.hansfullstack.shopping.services.ClothesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
-import java.util.Optional;
 
 @Service
-public class ClothesServiceImpl implements ClothesService{
+public class ClothesServiceImpl implements ClothesService {
 
     @Autowired
     private ClothesRepository clothesRepository;
@@ -29,7 +29,7 @@ public class ClothesServiceImpl implements ClothesService{
 
     @Override
     public ResponseDTO addClothes(ClothesDTO clothesDTO) {
-         Clothes clothes = clothesRepository.save(ClothesMapper.INSTANCE.DTOTOEntity(clothesDTO));
+        Clothes clothes = clothesRepository.save(ClothesMapper.INSTANCE.DTOTOEntity(clothesDTO));
 
         return ResponseDTO.builder()
                 .status(HttpStatus.CREATED)

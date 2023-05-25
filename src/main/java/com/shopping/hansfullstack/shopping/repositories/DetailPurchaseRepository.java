@@ -1,9 +1,9 @@
 package com.shopping.hansfullstack.shopping.repositories;
 
-import com.shopping.hansfullstack.shopping.entities.Purchase;
+import com.shopping.hansfullstack.shopping.entities.DetailPurchase;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface SupplyRepository extends JpaRepository<Purchase, Long> {
+public interface DetailPurchaseRepository extends JpaRepository<DetailPurchase, Long> {
 }

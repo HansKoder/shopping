@@ -20,6 +20,10 @@ public class DetailPurchase {
     @JoinColumn(name = "purchase_id")
     private Purchase purchase;
 
+    @ManyToOne
+    @JoinColumn(name = "clothes_id")
+    private Clothes clothes;
+
     @JoinColumn(name = "count_items")
     private Integer countItems;
 

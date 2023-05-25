@@ -14,7 +14,7 @@ public class DetailPurchaseDTO {
 
     private Integer count;
 
-    private Double pricePorUnit;
+    private Double pricePerUnit;
 
     private Double total;
 

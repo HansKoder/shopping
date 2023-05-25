@@ -17,7 +17,7 @@ public class Stock {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "clothes_id")
+    @JoinColumn(name = "clothes_id", unique = true)
     private Clothes clothes;
 
     private Integer amount;
