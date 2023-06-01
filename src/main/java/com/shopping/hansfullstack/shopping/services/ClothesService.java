@@ -11,4 +11,6 @@ public interface ClothesService {
 
     ResponseDTO updateClothes(ClothesDTO updated, Long clothesId);
 
+    ResponseDTO getClothes ();
+
 }

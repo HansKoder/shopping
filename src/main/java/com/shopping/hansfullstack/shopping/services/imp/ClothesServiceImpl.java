@@ -51,4 +51,12 @@ public class ClothesServiceImpl implements ClothesService {
                 .status(HttpStatus.BAD_REQUEST)
                 .data(alreadyUpdated).build();
     }
+
+    @Override
+    public ResponseDTO getClothes() {
+        return ResponseDTO
+                .builder()
+                .data(clothesRepository.findAll().stream().map(c -> ClothesMapper.INSTANCE.entityToDTO(c)))
+                .build();
+    }
 }

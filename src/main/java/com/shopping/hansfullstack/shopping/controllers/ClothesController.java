@@ -1,18 +1,16 @@
 package com.shopping.hansfullstack.shopping.controllers;
 
-import com.shopping.hansfullstack.shopping.entities.Clothes;
 import com.shopping.hansfullstack.shopping.exceptions.ErrorResponse;
 import com.shopping.hansfullstack.shopping.exceptions.NoSuchClothesException;
-import com.shopping.hansfullstack.shopping.mappers.ClothesMapper;
 import com.shopping.hansfullstack.shopping.repositories.ClothesRepository;
 import com.shopping.hansfullstack.shopping.request.ClothesDTO;
 import com.shopping.hansfullstack.shopping.response.ResponseDTO;
 import com.shopping.hansfullstack.shopping.services.ClothesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/api/v1/clothes")
 public class ClothesController {
@@ -36,6 +34,11 @@ public class ClothesController {
     @GetMapping("/{id}")
     public ResponseDTO getClothesById (@PathVariable Long id) {
         return clothesService.getClothesById(id);
+    }
+
+    @GetMapping("/")
+    public ResponseDTO getAllClothes () {
+        return clothesService.getClothes();
     }
 
     @ExceptionHandler(value = NoSuchClothesException.class)

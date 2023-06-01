@@ -11,21 +11,19 @@ import java.util.Date;
 @Builder
 @ToString
 @Entity
-@Table(name = "purchases")
-public class Purchase {
+@Table(name = "orders")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "date_purchase")
-    private Date datePurchase;
+    @Column(name = "date_order")
+    private Date dateOrder;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
-
-    private Double total;
 
     private String comments;
 

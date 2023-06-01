@@ -1,8 +1,8 @@
 package com.shopping.hansfullstack.shopping.services.imp;
 
 import com.shopping.hansfullstack.shopping.entities.Clothes;
-import com.shopping.hansfullstack.shopping.entities.DetailPurchase;
-import com.shopping.hansfullstack.shopping.entities.Purchase;
+import com.shopping.hansfullstack.shopping.entities.DetailOrder;
+import com.shopping.hansfullstack.shopping.entities.Order;
 import com.shopping.hansfullstack.shopping.entities.Supplier;
 import com.shopping.hansfullstack.shopping.exceptions.DetailPurchaseEmptyListException;
 import com.shopping.hansfullstack.shopping.exceptions.NoSuchClothesException;
@@ -15,7 +15,7 @@ import com.shopping.hansfullstack.shopping.repositories.SupplierRepository;
 import com.shopping.hansfullstack.shopping.request.AddPurchaseDTO;
 import com.shopping.hansfullstack.shopping.request.DetailPurchaseDTO;
 import com.shopping.hansfullstack.shopping.response.ResponseDTO;
-import com.shopping.hansfullstack.shopping.services.PurchaseService;
+import com.shopping.hansfullstack.shopping.services.OrderService;
 import com.shopping.hansfullstack.shopping.services.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public class PurchaseServiceImpl implements PurchaseService {
+public class OrderServiceImpl implements OrderService {
 
     @Autowired
     private SupplierRepository supplierRepository;
@@ -57,7 +57,7 @@ public class PurchaseServiceImpl implements PurchaseService {
         validateNoSuchClothes(ids);
 
         // Save data
-        Purchase addPurchase = purchaseRepository.save(mapPurchase(addPurchaseDTO, idSupplier));
+        Order addPurchase = purchaseRepository.save(mapPurchase(addPurchaseDTO, idSupplier));
         detailPurchaseRepository.saveAll(mapItems(addPurchaseDTO.getItems(), addPurchase));
 
         // Modify stock
@@ -66,20 +66,25 @@ public class PurchaseServiceImpl implements PurchaseService {
         return ResponseDTO.builder().status(HttpStatus.OK).message("success").build();
     }
 
-    private Purchase mapPurchase (AddPurchaseDTO addPurchaseDTO, Long idSupplier) {
-        return Purchase.builder()
-                .datePurchase(new Date())
-                .total(addPurchaseDTO.getTotal())
+    @Override
+    public List<Order> getPurchases() {
+        return purchaseRepository.findAll();
+    }
+
+    private Order mapPurchase (AddPurchaseDTO addPurchaseDTO, Long idSupplier) {
+        return Order.builder()
+                .dateOrder(new Date())
+                //.total(addPurchaseDTO.getTotal())
                 .comments(addPurchaseDTO.getComments())
                 .supplier(Supplier.builder().id(idSupplier).build())
                 .build();
     }
 
-    private List<DetailPurchase> mapItems (List<DetailPurchaseDTO> items, Purchase addPurchase) {
+    private List<DetailOrder> mapItems (List<DetailPurchaseDTO> items, Order addPurchase) {
         return items.stream()
                 .map( item -> {
-                    return DetailPurchase.builder()
-                            .purchase(addPurchase)
+                    return DetailOrder.builder()
+                            .order(addPurchase)
                             .countItems(item.getCount())
                             .clothes(Clothes.builder().id(item.getClothesId()).build())
                             .pricePerUnit(item.getPricePerUnit())

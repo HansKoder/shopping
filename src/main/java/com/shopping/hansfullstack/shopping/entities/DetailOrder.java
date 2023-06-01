@@ -9,16 +9,16 @@ import lombok.*;
 @Builder
 @ToString
 @Entity
-@Table(name = "details_purchase")
-public class DetailPurchase {
+@Table(name = "details_order")
+public class DetailOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "purchase_id")
-    private Purchase purchase;
+    @JoinColumn(name = "order_id")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "clothes_id")
@@ -31,5 +31,9 @@ public class DetailPurchase {
     private Double pricePerUnit;
 
     private Double total;
+
+    private Boolean check;
+
+    private String comment;
 
 }
