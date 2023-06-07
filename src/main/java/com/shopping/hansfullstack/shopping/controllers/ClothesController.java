@@ -23,6 +23,10 @@ public class ClothesController {
 
     @PostMapping("/")
     public ResponseDTO addClothes (@RequestBody ClothesDTO clothesDTO) {
+        System.out.println(clothesDTO.getBrand());
+        System.out.println(clothesDTO.getDetailSize());
+        System.out.println(clothesDTO);
+
         return clothesService.addClothes(clothesDTO);
     }
 

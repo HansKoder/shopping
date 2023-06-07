@@ -29,7 +29,10 @@ public class ClothesServiceImpl implements ClothesService {
 
     @Override
     public ResponseDTO addClothes(ClothesDTO clothesDTO) {
-        Clothes clothes = clothesRepository.save(ClothesMapper.INSTANCE.DTOTOEntity(clothesDTO));
+        Clothes entity = ClothesMapper.INSTANCE.DTOTOEntity(clothesDTO);
+        System.out.println("entity --> " + entity);
+
+        Clothes clothes = clothesRepository.save(entity);
 
         return ResponseDTO.builder()
                 .status(HttpStatus.CREATED)

@@ -12,6 +12,6 @@ public interface ClothesMapper {
     ClothesDTO entityToDTO(Clothes entity);
 
 
-    Clothes DTOTOEntity(ClothesDTO entity);
+    Clothes DTOTOEntity(ClothesDTO dto);
 
 }
