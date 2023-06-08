@@ -17,4 +17,6 @@ public class ClothesDTO {
 
     private String detailSize;
 
+    private Long id;
+
 }

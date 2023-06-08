@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -57,6 +58,14 @@ public class ClothesServiceImpl implements ClothesService {
 
     @Override
     public ResponseDTO getClothes() {
+        List<Clothes> clothesList = clothesRepository.findAll();
+
+        clothesList.forEach(System.out::println);
+
+        List<ClothesDTO> clothesDTOS = clothesList.stream().map(c -> ClothesMapper.INSTANCE.entityToDTO(c)).toList();
+
+        clothesDTOS.forEach(System.out::println);
+
         return ResponseDTO
                 .builder()
                 .data(clothesRepository.findAll().stream().map(c -> ClothesMapper.INSTANCE.entityToDTO(c)))

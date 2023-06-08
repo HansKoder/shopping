@@ -3,6 +3,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 // Views
 import HomeView from "../views/HomeView.vue";
 import ClothesView from "../views/ClothesView.vue";
+import DetailClothesVue from "@/views/clothes/DetailClothes.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -20,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
     path: "/clothes",
     name: "clothes",
     component: ClothesView,
+  },
+  {
+    path: "/clothes/detail/:id",
+    name: "detailClothes",
+    component: DetailClothesVue,
   },
 ];
 
