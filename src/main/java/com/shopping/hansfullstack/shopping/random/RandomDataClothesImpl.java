@@ -28,11 +28,14 @@ public class RandomDataClothesImpl implements RandomDataClothes {
         String color = getRandomOfList(COLORS);
         String name = category + " - " + color + " - " + generateWord();
 
+        String img = "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGFudHN8ZW58MHx8MHx8fDA%3D&w=1000&q=80";
+
         return Clothes.builder()
                 .brand(brand)
                 .category(category)
                 .detailSize(size)
                 .name(name)
+                .img(img)
                 .build();
     }
 

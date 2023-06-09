@@ -11,6 +11,8 @@ public class ClothesDTO {
 
     private String name;
 
+    private String img;
+
     private String category;
 
     private String brand;

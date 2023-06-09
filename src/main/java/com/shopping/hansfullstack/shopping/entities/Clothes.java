@@ -18,6 +18,8 @@ public class Clothes {
 
     private String name;
 
+    private String img;
+
     private String category;
 
     private String brand;

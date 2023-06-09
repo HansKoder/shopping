@@ -1,24 +1,15 @@
 <template>
   <section class="mt-[1px]">
-    <h1 class="text-pink-600 font-bold text-5xl text-center font-black mb-8">
-      Clothes
-    </h1>
+    <main-title title="Clothes" />
 
-    <div v-if="!showForm">
-      <button
-        class="bg-pink-600 text-white text-md font-semibold rounded-md m-2 px-5 py-1 right-[0px]"
-        @click="handlerShowForm"
+    <div>
+      <router-link
+        to="/clothes/add"
+        class="bg-pink-600 text-white text-xl text-md font-semibold rounded-md px-5 py-2 right-[0px] block w-[180px] text-center mb-2"
       >
         Add Clothes
-      </button>
-
-      <ExampleModal />
+      </router-link>
     </div>
-
-    <!-- Form -->
-    <section v-if="showForm">
-      <FormClothes />
-    </section>
 
     <!-- Show When There is nothing Data -->
     <Info
@@ -107,26 +98,11 @@
 
     <!-- Show Devices Mobiles -->
     <div v-if="clothes.length > 0" class="w-full">
-      <figure
-        class="flex bg-rose-100 rounded-xl p-6 md:p-0 border-b-4 border-pink-500 mb-2 md:hidden"
+      <clothes-item
         v-for="(item, index) in clothes"
         :key="index"
-      >
-        <img
-          class="w-24 h-24 rounded-full mx-auto"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCPOVdt5RW3yQa3mDbaf8PlvN6PqsMLUFr1y7FwqDSu9BPTkS_HAXzo4BrXoIr9BfXRts&usqp=CAU"
-          alt=""
-        />
-        <div class="pt-2 md:p-2 text-center space-y-4">
-          <p class="text-lg font-medium">
-            {{ item.name }}
-          </p>
-          <div class="font-medium">
-            <div class="text-sky-500">{{ item.brand }}</div>
-            <div class="text-slate-700">Size: {{ item.detailSize }}</div>
-          </div>
-        </div>
-      </figure>
+        :item="item"
+      />
     </div>
   </section>
 </template>
@@ -141,15 +117,14 @@ import { ref, onMounted } from "vue";
 
 // Components
 import Info from "@/components/Info.vue";
-import FormClothes from "@/components/FormClothes.vue";
-import ExampleModal from "@/components/ExampleModal.vue";
+import MainTitle from "@/components/MainTitle.vue";
+import ClothesItem from "@/components/ClothesItem.vue";
 
 export default {
   name: "ClothesView",
   setup() {
     // Variables
     let clothes = ref([]);
-    let showForm = ref(false);
 
     // Methodos
     const getClothes = async () => {
@@ -163,22 +138,16 @@ export default {
         !data || !data.data || !data.data.data ? [] : data.data.data;
     };
 
-    const handlerShowForm = () => {
-      showForm.value = !showForm.value;
-    };
-
     onMounted(() => getClothes());
 
     return {
       clothes,
-      showForm,
-      handlerShowForm,
     };
   },
   components: {
     Info,
-    FormClothes,
-    ExampleModal,
+    MainTitle,
+    ClothesItem,
   },
 };
 </script>

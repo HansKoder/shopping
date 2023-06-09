@@ -4,9 +4,11 @@
     <i class="bi bi-filter-left px-2 bg-pink-700 rounded-md"></i>
   </button>
 
-  <!-- Menu -->
+  <!-- Menu 
+  sidebar fixed top-0 bottom-0 lg:left-0 left-[-260px] p-2 w-[260px] overflow-y-auto text-center bg-pink-700 bloc
+  -->
   <aside
-    class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-260px] p-2 w-[260px] overflow-y-auto text-center bg-pink-700"
+    class="sidebar fixed lg:left-0 left-[-260px] top-0 bottom-0 lg:left-0 left-[-260px] p-2 w-[260px] overflow-y-auto text-center bg-pink-700 md:block"
   >
     <!-- Title -->
     <div class="text-gray-100 text-xl">
@@ -19,19 +21,6 @@
       </div>
       <hr class="my-2 text-gray-600" />
     </div>
-
-    <!-- Search 
-    <div
-      class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer bg-gray-700 text-white"
-    >
-      <i class="bi bi-search text-sm"></i>
-      <input
-        type="text"
-        placeholder="Search"
-        class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
-      />
-    </div>
-    -->
 
     <!-- Home -->
     <div

@@ -1,0 +1,1 @@
+ALTER TABLE public.clothes ADD COLUMN  img varchar;
